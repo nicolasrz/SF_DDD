@@ -1,0 +1,7 @@
+controllers:
+  resource: ../../src/Presentation/Api/Action/User
+  type: attribute
+
+kernel:
+  resource: ../../src/Kernel.php
+  type: attribute

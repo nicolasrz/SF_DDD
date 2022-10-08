@@ -1,0 +1,4 @@
+#controllers:
+#  resource: ../../src/Presentation/Api/Action/User/*
+#  type: annotation
+#
