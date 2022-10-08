@@ -29,22 +29,22 @@ class RegisterUserAction extends AbstractController
     {
     }
 
-    #[Route(path:'/register', name: 'register_user', methods: ['POST'])]
-    public function __invoke(Request $request) : JsonResponse
+    #[Route(path: '/register', name: 'register_user', methods: ['POST'])]
+    public function __invoke(Request $request): JsonResponse
     {
         $registerUserRequest = $this->registerUserRequestBuilder->build($request);
         $isValidRequest = $this->registerUserRequestIsValidSpecification->check($registerUserRequest);
 
-        if(false === $isValidRequest->isValid()) {
+        if (false === $isValidRequest->isValid()) {
             return (new JsonResponseFail(
                 $isValidRequest->getErrors()
             ))->response();
         }
 
         $user = $this->userBuilder->build($registerUserRequest);
-        try{
-        $this->useCase->process($user);
-        }catch (EmailAlreadyInUseExceptionInterface $exception) {
+        try {
+            $this->useCase->process($user);
+        } catch (EmailAlreadyInUseExceptionInterface $exception) {
             return (new JsonResponseFail(
                 [$exception->getMessage()]
             ))->response();

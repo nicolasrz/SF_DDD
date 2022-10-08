@@ -4,7 +4,7 @@ namespace App\Infrastructure\Repository;
 
 use App\Domain\Repository\UserRepositoryInterface;
 use App\Domain\ValuesObject\User;
-use App\Infrastructure\Builder\User\UserDaoBuilder;
+use App\Infrastructure\Builder\User\UserEntityBuilder;
 use App\Infrastructure\DAO\ORM\User as UserEntity;
 use App\Infrastructure\Exception\User\EmailAlreadyInUseException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -18,12 +18,12 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserRepositoryInterface
 {
 
-    private UserDaoBuilder $userDaoBuilder;
+    private UserEntityBuilder $userEntityBuilder;
 
-    public function __construct(ManagerRegistry $registry, UserDaoBuilder $userDaoBuilder)
+    public function __construct(ManagerRegistry $registry, UserEntityBuilder $userEntityBuilder)
     {
         parent::__construct($registry, UserEntity::class);
-        $this->userDaoBuilder = $userDaoBuilder;
+        $this->userEntityBuilder = $userEntityBuilder;
     }
 
 
@@ -32,7 +32,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function save(User $user, bool $flush = true): void
     {
-        $userEntity = $this->userDaoBuilder->build($user);
+        $userEntity = $this->userEntityBuilder->build($user);
         $this->getEntityManager()->persist($userEntity);
         if ($flush) {
             try {

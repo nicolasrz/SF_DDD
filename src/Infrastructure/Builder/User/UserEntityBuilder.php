@@ -6,7 +6,7 @@ use App\Domain\ValuesObject\User;
 use App\Infrastructure\DAO\ORM\User as UserEntity;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserDaoBuilder
+class UserEntityBuilder
 {
     public function __construct(private readonly UserPasswordHasherInterface $passwordHasher)
     {
@@ -14,6 +14,7 @@ class UserDaoBuilder
 
     public function build(User $user) : UserEntity {
         $userEntity = (new UserEntity())->setEmail($user->getEmail());
+
         $hashedPassword = $this->passwordHasher->hashPassword(
             $userEntity,
             $user->getPassword()
