@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Presentation\Api\DTO\Request\User;
+
 use App\Presentation\Api\DTO\Request\DtoRequestInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class RegisterUserRequest implements DtoRequestInterface
+class LoginUserRequest implements DtoRequestInterface
 {
-
     #[Assert\NotBlank]
     #[Assert\Email]
     private ?string $email = null;
@@ -35,6 +35,4 @@ class RegisterUserRequest implements DtoRequestInterface
     {
         return $this->password;
     }
-
-
 }
