@@ -18,13 +18,14 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserRepositoryInterface
 {
 
-    private UserEntityBuilder $userEntityBuilder;
 
-    public function __construct(ManagerRegistry $registry, UserEntityBuilder $userEntityBuilder)
+    public function __construct(ManagerRegistry $registry,
+                                private readonly UserEntityBuilder $userEntityBuilder
+    )
     {
         parent::__construct($registry, UserEntity::class);
-        $this->userEntityBuilder = $userEntityBuilder;
     }
+
 
 
     /**

@@ -36,5 +36,4 @@ class RegisterUserRequest implements DtoRequestInterface
         return $this->password;
     }
 
-
 }

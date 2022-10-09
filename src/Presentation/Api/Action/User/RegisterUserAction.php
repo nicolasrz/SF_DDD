@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/register', name: 'register_user', methods: ['POST'])]
+#[Route(path: '/api/register', name: 'register_user', methods: ['POST'])]
 class RegisterUserAction extends AbstractController
 {
 

@@ -13,7 +13,8 @@ class UserEntityBuilder
     }
 
     public function build(User $user) : UserEntity {
-        $userEntity = (new UserEntity())->setEmail($user->getEmail());
+        $userEntity = (new UserEntity())
+            ->setEmail($user->getEmail());
 
         $hashedPassword = $this->passwordHasher->hashPassword(
             $userEntity,

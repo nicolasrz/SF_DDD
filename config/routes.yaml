@@ -1,4 +1,2 @@
-#controllers:
-#  resource: ../../src/Presentation/Api/Action/User/*
-#  type: annotation
-#
+api_login_check:
+  path: /api/login
